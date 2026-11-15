@@ -305,9 +305,9 @@ img{max-width:100%}
   <div class="df"><button class="btn primary" type="submit">Speichern</button><span style="flex:1"></span><button class="btn" type="button" id="cReset">Standardwerte</button></div>
 </form></dialog>
 <script id="demo" type="application/json">{}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.4/lib/msal-browser.min.js"></script>
+<script src="lib/three-0.128.0.min.js"></script>
+<script src="lib/OrbitControls-0.128.0.js"></script>
+<script src="lib/msal-browser-2.38.4.min.js"></script>
 <script>
 (function(){
 "use strict";
@@ -843,7 +843,7 @@ $("bRot").addEventListener("click",function(){ var it=S.sel&&S.items.get(S.sel);
 
 /* ---------- Anmeldung, Einstellungen ---------- */
 function msalBereit(){ if(pca) return true; if(!window.msal||location.protocol==="file:") return false;
-  pca=new msal.PublicClientApplication({auth:{clientId:CFG.clientId,authority:"https://login.microsoftonline.com/"+CFG.tenantId,redirectUri:location.origin+location.pathname.replace(/index\.html$/,"")},cache:{cacheLocation:"localStorage"}}); return true; }
+  pca=new msal.PublicClientApplication({auth:{clientId:CFG.clientId,authority:"https://login.microsoftonline.com/"+CFG.tenantId,redirectUri:location.origin+location.pathname.replace(/index\.html$/,"")},cache:{cacheLocation:"sessionStorage"}}); return true; }
 function anmelden(){ if(!msalBereit()){ note(location.protocol==="file:"?"Die Anmeldung funktioniert nur, wenn die Seite über eine Web-Adresse (https) geöffnet wird, nicht als lokale Datei.":"Die Microsoft-Anmeldung konnte nicht geladen werden.",true); return; }
   pca.loginPopup({scopes:SCOPES,prompt:"select_account"}).then(function(r){ konto=r.account; live(); }).catch(function(e){ if(e&&e.errorCode==="user_cancelled") return; note("Die Anmeldung hat nicht geklappt."+(e&&e.errorMessage?" ("+e.errorMessage.split("\n")[0]+")":""),true); }); }
 function live(){ S.mode="live"; S.user=konto?(konto.name||konto.username||""):""; ids=null; sess=null; note(""); laden(); }
