@@ -482,7 +482,7 @@ function fehler(e){ var t="Speichern hat nicht geklappt. Bitte lade die Daten ne
   note(t+(e&&e.detail?" ("+e.detail+")":""),true); }
 
 function laden(){ S.busy=true; modebar(); return quelle().load().then(function(raw){ var warn=[];
-    Object.keys(SCH).forEach(function(n){ if(!raw[n]){ D[n]=[]; if(n!=="Einstellungen") warn.push(n); return; } if(!kopfPruefen(n,raw[n])) warn.push(n); D[n]=dec(n,raw[n]); });
+    var pruefen=S.mode==="live"; Object.keys(SCH).forEach(function(n){ if(!raw[n]){ D[n]=[]; if(pruefen&&n!=="Einstellungen"&&n!=="Personen") warn.push(n); return; } if(pruefen&&!kopfPruefen(n,raw[n])) warn.push(n); D[n]=dec(n,raw[n]); });
     S.busy=false; note(warn.length?"Diese Blätter fehlen in der Excel oder haben andere Spaltenköpfe: "+warn.join(", ")+". Spaltenköpfe stehen in Zeile 4, Daten ab Zeile 5.":"",warn.length>0);
     PL.xls={ms:D.Meilensteine,au:D.Aufgaben}; PL.on=false; infraSync(); geoLaden(); refresh();
     if(S.mode==="live") return plannerLaden().then(function(){ refresh(); },function(e){ note("Planner konnte nicht gelesen werden."+(e&&e.status===403?" Dem Konto fehlt die Berechtigung für Planner.":"")+(e&&e.detail?" ("+e.detail+")":"")+" Angezeigt werden Meilensteine und Aufgaben aus der Excel.",true); }); }).catch(function(e){ S.busy=false; var t="Die Excel konnte nicht geladen werden.";
