@@ -176,24 +176,34 @@ img{max-width:100%}
 .note.err{background:transparent;border:1px solid var(--st-offen);color:var(--st-offen)}
 .leer{padding:18px 14px;color:var(--muted)}
 .z-erledigt{color:var(--st-aufgebaut)} .z-arbeit{color:var(--st-angefragt)} .z-offen{color:var(--muted)} .z-ueber{color:var(--st-offen)}
-.tl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 12px 14px}
-.tltrack{display:flex;gap:6px;min-width:min-content;position:relative}
-.tltrack::before{content:"";position:absolute;left:0;right:0;top:37px;height:2px;background:var(--line)}
-.tlm{flex:0 0 172px;display:flex;flex-direction:column;gap:6px;min-width:0;position:relative}
-.tlm.leer{flex:0 0 auto;min-width:46px;padding-right:8px}
-.tlh{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);height:22px;display:flex;gap:6px;align-items:center;white-space:nowrap}
-.tlh.heute{color:var(--ink)}
-.tlh i{font-style:normal;background:var(--bandgold);color:#1b1b1b;border-radius:4px;padding:0 5px;font-size:10.5px;letter-spacing:.04em}
-.tldot{width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--line);margin:1px 0 5px 2px;position:relative}
-.tldot.voll{background:var(--band);border-color:var(--band)}
-.tlc{display:flex;gap:6px;align-items:flex-start;text-align:left;background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--band);border-radius:6px;padding:5px 7px;font-size:12.5px;line-height:1.3;color:var(--ink);width:100%}
-.tlc:hover{border-color:var(--muted)}
-.tlc b{font-variant-numeric:tabular-nums;flex:none}
-.tlc span{overflow-wrap:anywhere}
-.tlc.z-erledigt span{text-decoration:line-through;color:var(--muted)}
-.tlc.z-ueber b{color:var(--st-offen)}
-.tlc.z-arbeit b{color:var(--st-angefragt)}
-.tlc.z-erledigt b{color:var(--st-aufgebaut)}
+.tl{position:relative;overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;scrollbar-width:thin}
+.tlgrid{display:flex;min-width:min-content;min-height:260px}
+.tlm{flex:0 0 190px;display:flex;flex-direction:column;border-left:1px solid var(--line);position:relative;min-width:0}
+.tlm:first-child{border-left:0}
+.tlm.tlleer{flex-basis:80px}
+.tlm.jahr{border-left:3px solid var(--band)}
+.tlm.jahr:first-child{border-left:0}
+.tlm.fest{background:var(--gold-soft)}
+.tly{height:24px;padding:4px 10px 0;font-size:15px;font-weight:800;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tlh{padding:2px 10px 8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tlm.tlleer .tlh{font-weight:600;font-size:11.5px}
+.tlm.fest .tlh{color:var(--ink)}
+.tlb{display:flex;flex-direction:column;gap:8px;padding:10px 8px 12px}
+.tlfest{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.tlnow{position:absolute;top:56px;bottom:0;width:2px;background:var(--bandgold);z-index:1;pointer-events:none}
+.tlnow span{position:absolute;top:6px;left:-20px;background:var(--bandgold);color:#1b1b1b;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:1px 5px;white-space:nowrap}
+.tlc{position:relative;z-index:2;display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--rf,var(--band));border-radius:7px;padding:7px 9px 8px;color:var(--ink);width:100%;box-shadow:0 1px 2px rgba(0,0,0,.05);cursor:pointer}
+.tlc:hover{border-color:var(--muted);border-left-color:var(--rf,var(--band))}
+.tlct{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.tlct b{font-size:13px;font-variant-numeric:tabular-nums}
+.tlst{font-style:normal;font-size:11px;font-weight:700;white-space:nowrap}
+.tlst::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:currentColor;margin-right:4px;vertical-align:1px}
+.tltt{font-size:14px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.tlr{font-size:11.5px;color:var(--muted)}
+.tlc.z-erledigt .tltt{text-decoration:line-through;color:var(--muted)}
+.lgr{display:inline-flex;align-items:center;gap:6px}
+.lgr::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--rf)}
+.lgsp{flex-basis:100%;height:0}
 .legende{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;margin-top:8px}
 .lg{display:inline-flex;align-items:center;gap:6px}
 .lg::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
@@ -244,7 +254,7 @@ img{max-width:100%}
 .import span{max-width:80ch}
 .pl-hint{grid-column:span 6;margin:0}
 #fields .f.w6 input,#fields .f.w6 textarea{width:100%}
-@media (max-width:860px){ .ms summary{grid-template-columns:44px minmax(0,1fr) auto} .msc{display:none} .tlm{flex-basis:150px} }
+@media (max-width:860px){ .ms summary{grid-template-columns:44px minmax(0,1fr) auto} .msc{display:none} .tlm{flex-basis:168px} .tlm.tlleer{flex-basis:60px} }
 </style>
 </head>
 <body>
@@ -688,17 +698,24 @@ function kopf(t,sub,rechts){ var h=el("div","sechead"), l=el("div"); add(l,el("h
 function zeitstrahl(){ var sec=el("section"); sec.appendChild(kopf("Zeitstrahl","Alle Meilensteine bis zum Fest. Ein Klick öffnet den Meilenstein mit seinen Aufgaben.",btn("btn","Alle Meilensteine",function(){ go("meilensteine"); })));
   var ms=D.Meilensteine.filter(function(m){ return m.termin!=null; }).sort(function(a,b){ return a.termin-b.termin; });
   if(!ms.length){ sec.appendChild(el("div","leer","Noch keine Meilensteine mit Termin. Lege sie unter „Meilensteine“ an.")); return sec; }
-  var now=new Date(), y=now.getFullYear(), m=now.getMonth(), f=sd(ms[0].termin); if(f.getUTCFullYear()*12+f.getUTCMonth()<y*12+m){ y=f.getUTCFullYear(); m=f.getUTCMonth(); }
-  var l=sd(ms[ms.length-1].termin), end=Math.max(l.getUTCFullYear()*12+l.getUTCMonth(),2028*12+5), wrap=el("div","tl"), track=el("div","tltrack"), heute=null;
-  for(var k=y*12+m;k<=end;k++){ var yy=Math.floor(k/12), mm=k%12, items=ms.filter(function(x){ var d=sd(x.termin); return d.getUTCFullYear()===yy&&d.getUTCMonth()===mm; });
-    var col=el("div","tlm"+(items.length?"":" leer")), ist=(yy===now.getFullYear()&&mm===now.getMonth()), hd=el("div","tlh"+(ist?" heute":""),MONK[mm]+(mm===0||k===y*12+m?" "+yy:"")); if(ist){ hd.appendChild(el("i",null,"heute")); heute=col; }
-    col.appendChild(hd); col.appendChild(el("div","tldot"+(items.length?" voll":"")));
-    items.forEach(function(x){ var z=zustand(x), c=btn("tlc z-"+z,null,function(){ S.openMs=x.nr; S.msFilter="alle"; S.msStatus="alle"; go("meilensteine"); }); c.style.borderLeftColor=rfarbe(x.ressort);
-      add(c,el("b",null,p2(sd(x.termin).getUTCDate())+"."),el("span",null,x.titel||"")); c.title=(x.ressort||"")+" · "+ZTEXT[z]; col.appendChild(c); });
-    track.appendChild(col); }
-  wrap.appendChild(track); sec.appendChild(wrap);
-  var leg=el("div","legende"); ["erledigt","arbeit","offen","ueber"].forEach(function(z){ leg.appendChild(el("span","lg z-"+z,ZTEXT[z])); }); sec.appendChild(leg);
-  if(heute) setTimeout(function(){ wrap.scrollLeft=Math.max(0,heute.offsetLeft-12); },0);
+  var now=new Date(), nk=now.getFullYear()*12+now.getMonth(), f=sd(ms[0].termin), l=sd(ms[ms.length-1].termin);
+  var start=Math.min(nk,f.getUTCFullYear()*12+f.getUTCMonth()), end=Math.max(l.getUTCFullYear()*12+l.getUTCMonth(),FEST.getFullYear()*12+FEST.getMonth());
+  var wrap=el("div","tl"), grid=el("div","tlgrid"), heute=null;
+  for(var k=start;k<=end;k++){ var yy=Math.floor(k/12), mm=k%12, items=ms.filter(function(x){ var d=sd(x.termin); return d.getUTCFullYear()===yy&&d.getUTCMonth()===mm; });
+    var fest=(yy===FEST.getFullYear()&&mm===FEST.getMonth()), col=el("div","tlm"+(items.length?"":" tlleer")+(mm===0||k===start?" jahr":"")+(fest?" fest":""));
+    var yh=el("div","tly",(mm===0||k===start)?String(yy):""); col.appendChild(yh);
+    var mh=el("div","tlh",items.length||fest?MON[mm]:MONK[mm]); col.appendChild(mh);
+    if(k===nk){ var line=el("div","tlnow"), tage=new Date(yy,mm+1,0).getDate(); line.style.left="calc("+((now.getDate()-.5)/tage*100).toFixed(1)+"% - 1px)"; line.appendChild(el("span",null,"heute")); col.appendChild(line); heute=col; }
+    var body=el("div","tlb");
+    if(fest) body.appendChild(el("div","tlfest","Festwochenende 2.–5. Juni"));
+    items.forEach(function(x){ var z=zustand(x), c=btn("tlc z-"+z,null,function(){ S.openMs=x.nr; S.msFilter="alle"; S.msStatus="alle"; go("meilensteine"); }); c.style.setProperty("--rf",rfarbe(x.ressort));
+      var top=el("span","tlct"); add(top,el("b",null,p2(sd(x.termin).getUTCDate())+"."+p2(mm+1)+"."),el("i","tlst",ZTEXT[z]));
+      add(c,top,el("span","tltt",x.titel||""),el("span","tlr",x.ressort||"")); c.title=(x.ressort||"")+" · "+ZTEXT[z]; body.appendChild(c); });
+    col.appendChild(body); grid.appendChild(col); }
+  wrap.appendChild(grid); sec.appendChild(wrap);
+  var leg=el("div","legende"); ressorts().forEach(function(r){ var s=el("span","lgr",r); s.style.setProperty("--rf",rfarbe(r)); leg.appendChild(s); });
+  leg.appendChild(el("span","lgsp")); ["erledigt","arbeit","offen","ueber"].forEach(function(z){ leg.appendChild(el("span","lg z-"+z,ZTEXT[z])); }); sec.appendChild(leg);
+  if(heute) setTimeout(function(){ wrap.scrollLeft=Math.max(0,heute.offsetLeft-8); },0);
   return sec; }
 function ressortKarten(){ var sec=el("section"); sec.appendChild(kopf("Stand der Ressorts","Fortschritt nach erledigten Aufgaben. Ein Klick führt in das Ressort."));
   var grid=el("div","rgrid"); D.Ressorts.forEach(function(r){ var ms=D.Meilensteine.filter(function(x){ return x.ressort===r.name; }), au=D.Aufgaben.filter(function(x){ return x.ressort===r.name; }), zm=zaehl(ms), za=zaehl(au);
@@ -710,9 +727,8 @@ function ressortKarten(){ var sec=el("section"); sec.appendChild(kopf("Stand der
     var nx=ms.filter(function(x){ return x.status!=="Erledigt"&&x.termin!=null; }).sort(function(a,b){ return a.termin-b.termin; })[0];
     c.appendChild(el("div","rn",nx?"Als Nächstes: "+fd(nx.termin)+" · "+nx.titel:"Keine offenen Meilensteine"));
     grid.appendChild(c); }); sec.appendChild(grid); return sec; }
-function seiteStart(pg){ add(pg,zeitstrahl(),ressortKarten());
-  var sec=el("section"); sec.appendChild(kopf("Festplatz","Bolzplatz an der Vereinsstraße. Zum Drehen ziehen, zum Zoomen zwei Finger oder Mausrad. Ein Klick auf eine Nummer zeigt die Position.",btn("btn","Zur Infrastruktur",function(){ go("r-INFRA"); })));
-  var host=el("div"); host.id="host3d"; sec.appendChild(host); pg.appendChild(sec); S.mode3d="start"; }
+function seiteStart(pg){ var sec=el("section"); sec.appendChild(kopf("Festplatz","Bolzplatz an der Vereinsstraße. Zum Drehen ziehen, zum Zoomen zwei Finger oder Mausrad. Ein Klick auf eine Nummer zeigt die Position.",btn("btn","Zur Infrastruktur",function(){ go("r-INFRA"); })));
+  var host=el("div"); host.id="host3d"; sec.appendChild(host); pg.appendChild(sec); add(pg,zeitstrahl(),ressortKarten()); S.mode3d="start"; }
 
 function msListe(list,leerText){ var box=el("div","mslist"); if(!list.length){ box.appendChild(el("div","leer",leerText||"Keine Meilensteine.")); return box; }
   var monat=null; list.slice().sort(function(a,b){ return (a.termin==null?1e9:a.termin)-(b.termin==null?1e9:b.termin); }).forEach(function(m){ var d=sd(m.termin), mk=d?MON[d.getUTCMonth()]+" "+d.getUTCFullYear():"Ohne Termin";
