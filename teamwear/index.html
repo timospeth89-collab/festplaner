@@ -4,33 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Teamwear 2026 – Sportfreunde Schneeberg</title>
-<meta name="description" content="Teamwear Collection 2026 der Sportfreunde Schneeberg 1928 e. V. – Artikel, Preise, Größen und Bestellung.">
+<meta name="description" content="Teamwear Collection 2026 der Sportfreunde Schneeberg 1928 e. V. – Artikel wählen, Warenkorb füllen, bestellen.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: grünes Kopfband mit Wappen, darunter Ablauf in drei Schritten, Artikelraster in zwei Kollektionen, Bestellknopf. */
+/* Layout: Kopfband mit Wappen, Ablauf, Artikelraster mit Größenwahl je Karte, darunter Warenkorb und Angaben; unten eine feste Leiste mit Warenkorbsumme. */
 :root{
-  --bg:#f4f6f1; --surface:#ffffff; --ink:#16241b; --muted:#5a6a60; --line:#d9dfd6; --band:#1f4d2e; --bandgold:#e6b422; --gold:#9a7212; --soft:#f4e9cc; --chip:#eef2ec;
+  --bg:#f4f6f1; --surface:#ffffff; --ink:#16241b; --muted:#5a6a60; --line:#d9dfd6; --band:#1f4d2e; --bandgold:#e6b422; --gold:#9a7212; --soft:#f4e9cc; --chip:#eef2ec; --err:#b3402f; --ok:#2f7a3d;
   --font:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
-@media (prefers-color-scheme:dark){ :root{ --bg:#111813; --surface:#19231c; --ink:#e7eee8; --muted:#9bab9f; --line:#2b392f; --band:#1f4d2e; --gold:#e0b54a; --soft:#3a3118; --chip:#223027; color-scheme:dark } }
+@media (prefers-color-scheme:dark){ :root{ --bg:#111813; --surface:#19231c; --ink:#e7eee8; --muted:#9bab9f; --line:#2b392f; --gold:#e0b54a; --soft:#3a3118; --chip:#223027; --err:#e58573; --ok:#7fcf8d; color-scheme:dark } }
 *{box-sizing:border-box}
 html,body{margin:0}
 [hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15.5px;line-height:1.5}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15.5px;line-height:1.5;padding-bottom:84px}
 .in{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .band{background:var(--band);color:#fff;border-bottom:5px solid var(--bandgold)}
 .band .in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;padding-block:22px}
 .wap{width:76px;height:76px;flex:none;background:#fff;border-radius:12px;padding:4px}
 .ttl{flex:1 1 300px;min-width:0}
 .eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--bandgold)}
-h1{margin:2px 0 4px;font-size:clamp(26px,4.5vw,40px);font-weight:800;letter-spacing:.01em;line-height:1.05;text-wrap:balance}
+h1{margin:2px 0 4px;font-size:clamp(26px,4.5vw,40px);font-weight:800;line-height:1.05;text-wrap:balance}
 .band p{margin:0;color:#d5e2d8;max-width:60ch}
-.cta{display:inline-flex;align-items:center;gap:10px;background:var(--bandgold);color:#1b1b1b;font-weight:800;font-size:16px;text-decoration:none;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;font-family:inherit}
-.cta:hover{filter:brightness(1.05)}
-.cta[aria-disabled="true"]{background:#c9cfc8;color:#4d5a51;cursor:default;filter:none}
-.cta::after{content:"→"}
-.cta[aria-disabled="true"]::after{content:""}
-main{display:flex;flex-direction:column;gap:30px;padding-block:28px 56px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;border-radius:999px;padding:11px 20px;cursor:pointer;text-decoration:none;border:0}
+.btn.gold{background:var(--bandgold);color:#1b1b1b}
+.btn.green{background:var(--band);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:700}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.45;cursor:default}
+main{display:flex;flex-direction:column;gap:30px;padding-block:28px 40px}
 h2{margin:0 0 4px;font-size:22px;font-weight:800;text-wrap:balance}
 .sub{margin:0 0 14px;color:var(--muted)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;list-style:none;margin:0;padding:0;counter-reset:s}
@@ -39,27 +39,45 @@ h2{margin:0 0 4px;font-size:22px;font-weight:800;text-wrap:balance}
 .steps b{display:block}
 .steps span{color:var(--muted);font-size:14.5px}
 .info{display:flex;flex-wrap:wrap;gap:8px 18px;background:var(--soft);border-radius:12px;padding:12px 16px;font-size:14.5px}
-.info b{font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.card .pic{background:#fff;aspect-ratio:1/1;display:grid;place-items:center;border-bottom:1px solid var(--line)}
-.card .pic img{width:86%;height:86%;object-fit:contain;display:block}
-.card .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pic{background:#fff;aspect-ratio:1/1;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.pic img{width:84%;height:84%;object-fit:contain;display:block}
+.bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:9px;flex:1}
 .card h3{margin:0;font-size:17px;font-weight:800}
 .price{display:flex;flex-wrap:wrap;gap:4px 16px;font-variant-numeric:tabular-nums}
 .price div{display:flex;flex-direction:column}
-.price small{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.price strong{font-size:20px;font-weight:800}
-.sizes{display:flex;flex-wrap:wrap;gap:4px}
-.sizes span{font-size:12px;font-weight:700;background:var(--chip);border-radius:6px;padding:2px 7px;font-variant-numeric:tabular-nums}
-.ini{margin-top:auto;font-size:13px;color:var(--muted)}
-.ini.ja{color:var(--gold);font-weight:700}
-.end{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;background:var(--band);color:#fff;border-radius:14px;padding:20px 22px}
-.end p{margin:0;color:#d5e2d8;max-width:58ch}
-.end h2{color:#fff}
-footer{color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding-block:18px 36px}
-footer a{color:inherit}
+.price small{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.price strong{font-size:19px;font-weight:800}
+.fld{display:flex;flex-direction:column;gap:3px;font-size:12.5px;font-weight:700;color:var(--muted);min-width:0}
+.fld select,.fld input{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 9px;width:100%;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.add{margin-top:auto}
+.add .btn{width:100%}
+.note{font-size:12.5px;color:var(--muted)}
+.flash{font-size:13px;font-weight:700;color:var(--ok);min-height:1.2em}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.cart{list-style:none;margin:0;padding:0}
+.cart li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.cart li:last-child{border-bottom:0}
+.cart .t b{display:block}
+.cart .t span{font-size:13.5px;color:var(--muted)}
+.cart .p{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cart .x{background:none;border:0;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--band);margin-top:6px;padding-top:10px;font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);padding:6px 0}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.formgrid .w2{grid-column:span 2}
+.err{color:var(--err);font-size:13.5px;font-weight:600}
+.send{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.done{background:var(--soft);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:14.5px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--band);color:#fff;border-top:3px solid var(--bandgold);z-index:20;padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.bar span{font-weight:700}
+.bar b{font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding-block:18px 24px}
 :focus-visible{outline:3px solid var(--bandgold);outline-offset:2px}
+@media (max-width:560px){ .formgrid{grid-template-columns:1fr} .formgrid .w2{grid-column:span 1} .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))} }
 </style>
 </head>
 <body>
@@ -70,24 +88,24 @@ footer a{color:inherit}
     <h1>Teamwear Collection 2026</h1>
     <p>Trainings- und Freizeitkleidung im Vereinsgrün – für Spieler, Trainer, Eltern und Fans.</p>
   </div>
-  <a class="cta bestellen" href="#">Jetzt bestellen</a>
+  <a class="btn gold" href="#warenkorb">Zum Warenkorb</a>
 </div></header>
 
 <main class="in">
   <section aria-labelledby="ablauf">
     <h2 id="ablauf">So bestellst du</h2>
-    <p class="sub">Die Bestellung läuft über ein kurzes Online-Formular.</p>
+    <p class="sub">In drei Schritten, ohne Anmeldung.</p>
     <ol class="steps">
-      <li><div><b>Deine Angaben</b><span>Name, Vorname, E-Mail, Telefon und deine Mannschaft.</span></div></li>
-      <li><div><b>Artikel wählen</b><span>Artikel, Größe, Anzahl und auf Wunsch Initialen. Mehrere Artikel in einer Bestellung sind möglich.</span></div></li>
-      <li><div><b>Abschicken</b><span>Die Bestellung geht direkt an den Verein und wird zweimal im Monat gesammelt.</span></div></li>
+      <li><div><b>Artikel wählen</b><span>Bei jedem Artikel Größe, Anzahl und auf Wunsch Initialen wählen und in den Warenkorb legen.</span></div></li>
+      <li><div><b>Angaben eintragen</b><span>Unten im Warenkorb Name, E-Mail und Mannschaft eintragen.</span></div></li>
+      <li><div><b>Absenden</b><span>Es öffnet sich das Bestellformular des Vereins, schon ausgefüllt. Dort nur noch auf „Absenden“ tippen.</span></div></li>
     </ol>
   </section>
 
   <div class="info" role="note">
     <span><b>Bezahlung:</b> bar oder per PayPal bei Auslieferung</span>
-    <span><b>Initialen:</b> +4 € je Artikel (nicht bei Short und Socken)</span>
-    <span><b>Preise:</b> Kindergrößen 128–176 günstiger, Erwachsene ab Größe S</span>
+    <span><b>Initialen:</b> +4 € je Artikel, wo angegeben</span>
+    <span><b>Preise:</b> Kindergrößen 128–176, Erwachsene ab Größe S</span>
   </div>
 
   <section aria-labelledby="training">
@@ -102,19 +120,59 @@ footer a{color:inherit}
     <div class="grid" id="g2"></div>
   </section>
 
-  <section class="end" aria-labelledby="los">
-    <div><h2 id="los">Bereit zum Bestellen?</h2><p>Die Bestellungen werden zweimal im Monat gesammelt. Bezahlt wird bar oder per PayPal bei Auslieferung.</p></div>
-    <a class="cta bestellen" href="#">Jetzt bestellen</a>
+  <section id="warenkorb" aria-labelledby="wk">
+    <h2 id="wk">Warenkorb</h2>
+    <p class="sub">Prüfe deine Auswahl und trage deine Angaben ein.</p>
+    <div class="box">
+      <ul class="cart" id="cart"></ul>
+      <div class="empty" id="leer">Noch nichts im Warenkorb. Wähle oben Größe und Anzahl und tippe auf „In den Warenkorb“.</div>
+      <div class="total" id="totalrow" hidden><span>Gesamt</span><span id="total"></span></div>
+    </div>
+
+    <form class="box" id="daten" novalidate style="margin-top:14px">
+      <h2 style="font-size:18px;margin-bottom:12px">Deine Angaben</h2>
+      <div class="formgrid">
+        <label class="fld">Nachname<input id="nachname" autocomplete="family-name" required maxlength="60"></label>
+        <label class="fld">Vorname<input id="vorname" autocomplete="given-name" required maxlength="60"></label>
+        <label class="fld">E-Mail-Adresse<input id="mail" type="email" autocomplete="email" required maxlength="120"></label>
+        <label class="fld">Telefonnummer (optional)<input id="tel" type="tel" autocomplete="tel" maxlength="40"></label>
+        <label class="fld w2">Mannschaft<select id="team" required><option value="">Bitte wählen</option></select></label>
+      </div>
+      <div class="err" id="fehler" role="alert"></div>
+      <div class="send">
+        <button class="btn green" type="submit" id="senden">Bestellung absenden</button>
+        <span class="note">Es öffnet sich das Bestellformular des Vereins in einem neuen Fenster. Dort auf „Absenden“ tippen.</span>
+      </div>
+      <div class="done" id="fertig" hidden>
+        <b>Fast geschafft.</b> Im neuen Fenster auf <b>„Absenden“</b> tippen. Erst dann ist die Bestellung beim Verein.
+        Hat sich kein Fenster geöffnet? <a id="manuell" href="#" target="_blank" rel="noopener">Bestellformular hier öffnen</a>.
+        <div class="send"><button class="btn ghost" type="button" id="leeren">Abgeschickt – Warenkorb leeren</button></div>
+      </div>
+    </form>
   </section>
 </main>
+
+<div class="bar" id="bar"><div class="in"><span>Warenkorb: <b id="barn">0 Artikel</b> · <b id="barsum">0,00 €</b></span><a class="btn gold" href="#warenkorb">Ansehen</a></div></div>
 
 <footer><div class="in">Sportfreunde Schneeberg 1928 e. V. · Teamwear Collection 2026 · Preise laut Vereinsliste 2026</div></footer>
 
 <script>
 (function(){
   "use strict";
-  /* Link zum Microsoft-Forms-Bestellformular. Solange leer, ist der Knopf ausgegraut. */
-  var FORMULAR = "";
+  /* Bestellformular in Microsoft Forms und die Kennungen seiner Fragen (aus dem vorausgefüllten Link). */
+  var FORM = {
+    basis: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx",
+    id: "po7o5YD5Mk-rRkGnsEgpvioycBr-YnhFq7CrzszbOUpUQlo0Q1dDNFg0NFRVU09ESjIyWVJIT0NEWS4u",
+    nachname: "rdedf35c3e52c4be3a411682e64559b55",
+    vorname: "rb32776e87e47488d9394aef4610d9005",
+    mail: "r0b9326943f234df5bac704d6fb30a3b7",
+    tel: "r8500c6380b394af7a57ab08fcdce769a",
+    team: "ra83b2d636faf4ab1b87f431f7c03568a",
+    bestellung: "r7f672566b162455e938c7f62e090f332",
+    preis: "r9b6e8dacd8904f94ab9a262093964cbb"
+  };
+  var INI_MAX = 2, INI_AUFPREIS = 4, MAX_ANZAHL = 5, MAX_POSITIONEN = 15;
+  var TEAMS = ["G-Jugend (Bambini)","F-Jugend","E-Jugend","D-Jugend","C-Jugend","B-Jugend","A-Jugend","Mädchen","Herren","AH","Kein Spieler"];
   var K="128 140 156 164 176".split(" "), E="S M L XL XXL 3XL".split(" ");
   var A=[
     {g:1,n:"Jersey",b:"jersey",k:20,e:22,i:true,s:K.concat(E)},
@@ -122,28 +180,74 @@ footer a{color:inherit}
     {g:1,n:"Jacke (Entrada)",b:"jacke-entrada",k:28,e:31,i:true,s:K.concat(E)},
     {g:1,n:"Hose (Entrada)",b:"hose-entrada",k:21,e:25,i:true,s:K.concat(E)},
     {g:1,n:"Short",b:"short",k:12,e:15,i:false,s:K.concat(E)},
-    {g:1,n:"Vereinssocke",b:"socke",p:8,i:false,s:["31–35","36–40","41–45"]},
+    {g:1,n:"Vereinssocke",b:"socke",p:8,i:false,s:["31-35","36-40","41-45"]},
     {g:2,n:"„1928“ Hoody",b:"hoody-1928",k:32,e:36,i:true,s:K.concat(E)},
     {g:2,n:"„1928“ Shirt",b:"shirt-1928",p:20,i:true,s:K.concat(E)},
     {g:2,n:"„1928“ Tank Top",b:"tanktop-1928",p:16,i:true,s:"XS S M L XL XXL".split(" ")},
     {g:2,n:"Jacke (Tiro)",b:"jacke-tiro",p:36,i:true,s:K.concat(E)},
     {g:2,n:"Hose (Tiro)",b:"hose-tiro",p:30,i:true,s:K.concat(E)},
-    {g:2,n:"Rucksack",b:"rucksack",p:18,i:true,s:["Einheitsgröße"]}
+    {g:2,n:"Rucksack",b:"rucksack",p:18,i:true,s:[]}
   ];
+  var $=function(id){ return document.getElementById(id); };
   function el(t,c,x){ var e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e; }
-  function preis(lbl,v){ var d=el("div"); d.appendChild(el("small",null,lbl)); d.appendChild(el("strong",null,v+" €")); return d; }
-  A.forEach(function(a){
+  function eur(v){ return v.toFixed(2).replace(".",",")+" €"; }
+  function einzel(a,gr){ if(a.p!=null) return a.p; return /^\d+$/.test(gr)?a.k:a.e; }
+  var korb=[]; try{ korb=JSON.parse(localStorage.getItem("teamwear-korb")||"[]")||[]; }catch(e){ korb=[]; }
+  korb=korb.filter(function(z){ return A.some(function(a){ return a.n===z.n; }); });
+  function merken(){ try{ localStorage.setItem("teamwear-korb",JSON.stringify(korb)); }catch(e){} }
+
+  A.forEach(function(a,ix){
     var c=el("article","card"), pic=el("div","pic"), im=el("img"); im.src="img/"+a.b+".jpg"; im.alt=a.n; im.loading="lazy"; im.width=520; im.height=520; pic.appendChild(im); c.appendChild(pic);
     var bd=el("div","bd"); bd.appendChild(el("h3",null,a.n));
-    var pr=el("div","price"); if(a.p!=null) pr.appendChild(preis(a.s.length>1?"alle Größen":"Preis",a.p)); else { pr.appendChild(preis("Kinder 128–176",a.k)); pr.appendChild(preis("ab Größe S",a.e)); } bd.appendChild(pr);
-    var sz=el("div","sizes"); a.s.forEach(function(s){ sz.appendChild(el("span",null,s)); }); bd.appendChild(sz);
-    bd.appendChild(el("div","ini"+(a.i?" ja":""),a.i?"Initialen möglich (+4 €)":"Ohne Initialen"));
-    c.appendChild(bd); document.getElementById(a.g===1?"g1":"g2").appendChild(c);
+    var pr=el("div","price");
+    function pp(l,v){ var d=el("div"); d.appendChild(el("small",null,l)); d.appendChild(el("strong",null,v+" €")); pr.appendChild(d); }
+    if(a.p!=null) pp(a.s.length?"alle Größen":"Preis",a.p); else { pp("Kinder 128–176",a.k); pp("ab Größe S",a.e); }
+    bd.appendChild(pr);
+    var row=el("div","row2"), gs=null;
+    if(a.s.length){ var lg=el("label","fld","Größe"); gs=el("select"); gs.id="gr"+ix; var o0=el("option",null,"wählen"); o0.value=""; gs.appendChild(o0);
+      a.s.forEach(function(s){ var o=el("option",null,s); o.value=s; gs.appendChild(o); }); lg.appendChild(gs); row.appendChild(lg); }
+    else { var lg2=el("div","fld","Größe"); lg2.appendChild(el("span",null,"Einheitsgröße")); row.appendChild(lg2); }
+    var la=el("label","fld","Anzahl"), an=el("select"); an.id="an"+ix; for(var q=1;q<=MAX_ANZAHL;q++){ var oq=el("option",null,String(q)); oq.value=String(q); an.appendChild(oq); } la.appendChild(an); row.appendChild(la);
+    bd.appendChild(row);
+    var ini=null;
+    if(a.i){ var li=el("label","fld","Initialen (optional, +"+INI_AUFPREIS+" €)"); ini=el("input"); ini.id="in"+ix; ini.maxLength=INI_MAX; ini.placeholder="z. B. MM"; ini.autocomplete="off";
+      ini.addEventListener("input",function(){ var v=ini.value.toUpperCase().replace(/[^A-ZÄÖÜ]/g,"").slice(0,INI_MAX); if(v!==ini.value) ini.value=v; }); li.appendChild(ini); bd.appendChild(li); }
+    else bd.appendChild(el("div","note","Ohne Initialen"));
+    var msg=el("div","flash"); msg.setAttribute("aria-live","polite");
+    var ad=el("div","add"), b=el("button","btn green","In den Warenkorb"); b.type="button";
+    b.addEventListener("click",function(){ msg.style.color=""; if(gs&&!gs.value){ msg.textContent="Bitte zuerst eine Größe wählen."; msg.style.color="var(--err)"; gs.focus(); return; }
+      if(korb.length>=MAX_POSITIONEN){ msg.textContent="Höchstens "+MAX_POSITIONEN+" Positionen je Bestellung."; msg.style.color="var(--err)"; return; }
+      korb.push({n:a.n,g:gs?gs.value:"Einheitsgröße",m:parseInt(an.value,10)||1,i:ini?ini.value.trim():""}); merken(); zeigen();
+      msg.textContent="Im Warenkorb ✓"; if(gs) gs.value=""; an.value="1"; if(ini) ini.value=""; setTimeout(function(){ msg.textContent=""; },2500); });
+    ad.appendChild(b); bd.appendChild(ad); bd.appendChild(msg);
+    c.appendChild(bd); $(a.g===1?"g1":"g2").appendChild(c);
   });
-  [].slice.call(document.querySelectorAll(".bestellen")).forEach(function(b){
-    if(FORMULAR){ b.href=FORMULAR; b.target="_blank"; b.rel="noopener"; }
-    else { b.setAttribute("aria-disabled","true"); b.textContent="Bestellformular folgt in Kürze"; b.removeAttribute("href"); }
-  });
+  TEAMS.forEach(function(t){ var o=el("option",null,t); o.value=t; $("team").appendChild(o); });
+
+  function zeile(z){ var a=A.filter(function(x){ return x.n===z.n; })[0], aufp=(a.i&&z.i)?INI_AUFPREIS:0; return {a:a,stk:einzel(a,z.g)+aufp,sum:z.m*(einzel(a,z.g)+aufp)}; }
+  function zeigen(){ var ul=$("cart"); ul.textContent=""; var total=0, stueck=0;
+    korb.forEach(function(z,k){ var r=zeile(z); total+=r.sum; stueck+=z.m;
+      var li=el("li"), t=el("div","t"); t.appendChild(el("b",null,z.m+" × "+z.n)); t.appendChild(el("span",null,"Größe "+z.g+(z.i?" · Initialen "+z.i:"")+" · je "+eur(r.stk)));
+      var x=el("button","x","Entfernen"); x.type="button"; x.addEventListener("click",function(){ korb.splice(k,1); merken(); zeigen(); });
+      li.appendChild(t); li.appendChild(el("span","p",eur(r.sum))); li.appendChild(x); ul.appendChild(li); });
+    $("leer").hidden=korb.length>0; $("totalrow").hidden=!korb.length; $("total").textContent=eur(total);
+    $("barn").textContent=stueck+(stueck===1?" Artikel":" Artikel"); $("barsum").textContent=eur(total); $("senden").disabled=!korb.length; }
+
+  function bestelltext(){ return korb.map(function(z){ var r=zeile(z); return z.m+" x "+z.n+" | Größe "+z.g+" | Initialen "+(z.i||"-")+" | "+eur(r.sum); }).join("\n"); }
+  function link(){ var total=korb.reduce(function(s,z){ return s+zeile(z).sum; },0);
+    var p=[["id",FORM.id],[FORM.nachname,$("nachname").value.trim()],[FORM.vorname,$("vorname").value.trim()],[FORM.mail,$("mail").value.trim()],[FORM.tel,$("tel").value.trim()],
+      [FORM.team,'"'+$("team").value+'"'],[FORM.bestellung,bestelltext()],[FORM.preis,eur(total)]];
+    return FORM.basis+"?"+p.filter(function(x){ return x[1]!==""; }).map(function(x){ return x[0]+"="+encodeURIComponent(x[1]); }).join("&"); }
+  window.__teamwearLink=link;
+
+  $("daten").addEventListener("submit",function(e){ e.preventDefault(); var f=$("fehler"); f.textContent="";
+    if(!korb.length){ f.textContent="Der Warenkorb ist leer."; return; }
+    var fehlt=[]; if(!$("nachname").value.trim()) fehlt.push("Nachname"); if(!$("vorname").value.trim()) fehlt.push("Vorname");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("mail").value.trim())) fehlt.push("gültige E-Mail-Adresse"); if(!$("team").value) fehlt.push("Mannschaft");
+    if(fehlt.length){ f.textContent="Bitte noch ausfüllen: "+fehlt.join(", ")+"."; return; }
+    var url=link(); $("manuell").href=url; $("fertig").hidden=false; window.open(url,"_blank","noopener"); });
+  $("leeren").addEventListener("click",function(){ korb=[]; merken(); zeigen(); $("fertig").hidden=true; });
+  zeigen();
 })();
 </script>
 </body>
