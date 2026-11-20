@@ -339,7 +339,7 @@ var BMAP={}; Object.keys(BEREICHE).forEach(function(k){ BMAP[k]=BEREICHE[k][0]; 
 var ISTATUS={offen:"Offen",angefragt:"Angefragt",bestellt:"Bestellt",geliefert:"Geliefert",aufgebaut:"Aufgebaut"};
 var TYPEN={zelt:"Zelt",huette:"Hütte / Stand",pavillon:"Pavillon(s)",buehne:"Bühne",theke:"Theke / Ausgabe",garnituren:"Garnituren",biergarten:"Biergarten",wagen:"Wagen / Anhänger",geraet:"Gerät / Verteiler",licht:"Lichterketten",flaeche:"Fläche"};
 var PINH={zelt:5.6,huette:3.7,pavillon:3.5,buehne:5.8,theke:2.9,garnituren:1.5,biergarten:3,wagen:3.3,geraet:1.9,licht:4.9,flaeche:.7};
-var RFARBE={"Organisation":"#1f4d2e","Infrastruktur":"#2c6a94","Bewirtung":"#b07d12","Programm":"#7a4fa3","Öffentlichkeitsarbeit":"#0f7b76","Sport / Jugend":"#5f8a3a"};
+var RFARBE={"Organisation":"#1f4d2e","Infrastruktur":"#2c6a94","Bewirtung":"#b07d12","Programm":"#7a4fa3","Öffentlichkeitsarbeit":"#0f7b76","Sport / Jugend":"#5f8a3a","Gelände & Sportheim":"#8a5a2b"};
 var ST3=["Offen","In Arbeit","Erledigt"];
 var T=function(k,l,t,o){ return [k,l,t||"text",o]; };
 var SCH={
@@ -425,7 +425,7 @@ function quelle(){ return S.mode==="live"?Live:Demo; }
 
 /* ---------- Planner ---------- */
 var PL={on:false,plan:null,buckets:{},members:[],tasks:[],xls:null};
-var VKAT="category24", KAT={"Organisation":"category18","Infrastruktur":"category5","Bewirtung":"category16","Programm":"category6","Öffentlichkeitsarbeit":"category19","Sport / Jugend":"category8"}, MSKAT="category25";
+var VKAT="category24", KAT={"Organisation":"category18","Infrastruktur":"category5","Bewirtung":"category16","Programm":"category6","Öffentlichkeitsarbeit":"category19","Sport / Jugend":"category8","Gelände & Sportheim":"category7"}, MSKAT="category25";
 function kzListe(t){ return String(t||"").split(/[|·,\/;+]| und /).map(function(x){ return x.replace(/\?/g,"").trim(); }).filter(Boolean); }
 function mitglied(kz){ var p=D.Personen.filter(function(x){ return (x.kz||"").trim().toLowerCase()===kz.toLowerCase(); })[0]; if(!p||!p.mail) return null; var m=p.mail.trim().toLowerCase();
   return PL.members.filter(function(u){ return (u.mail||"").toLowerCase()===m||(u.userPrincipalName||"").toLowerCase()===m; })[0]||null; }
